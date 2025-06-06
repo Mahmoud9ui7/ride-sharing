@@ -1,21 +1,15 @@
-<<<<<<< HEAD
-# ride-sharing
-A ride-hailing app built with Flutter that connects passengers with nearby drivers in real-time, offering features like ride booking, fare estimation, live GPS tracking, and secure in-app payments.
-=======
-# ride_sharing
+🚗 Ride Sharing App – Make Your Commute Easier
+A smart ride-hailing app that connects drivers and passengers in seconds.
+Book your ride easily, track your driver live, and pay securely – all through a fast and simple interface.
+We designed the app to provide a safe, comfortable, and reliable travel experience at all times.
 
-A new Flutter project.
+✨ Features:
+Instant or scheduled ride requests
 
-## Getting Started
+Live driver tracking on the map
 
-This project is a starting point for a Flutter application.
+Rating and review system to ensure quality
 
-A few resources to get you started if this is your first Flutter project:
+Multiple payment options (Cash / Card / Wallet)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> master
+Fast in-app customer support
