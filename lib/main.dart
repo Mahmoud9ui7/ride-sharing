@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:practise/Screens/Adding/AddTrip.dart';
 import 'package:practise/Screens/Auth/LoginScreen.dart';
 import 'package:practise/Screens/Auth/RegisterScreen.dart';
 import 'package:practise/Screens/Booking/BookingTrip.dart';
@@ -13,6 +12,7 @@ import 'package:practise/constants.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -72,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _tabs = [
     Center(child: AvailableTripsPage()),
     Center(child: BookingPage()),
-    Center(child: AddTripPage()),
     Center(child: ProfilePage()),
   ];
 
@@ -94,7 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.list), label: 'الرحلات'),
           BottomNavigationBarItem(
               icon: Icon(Icons.book_online), label: 'حجز رحلة'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'إضافة رحلة'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'البروفايل'),
         ],
       ),

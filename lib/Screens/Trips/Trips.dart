@@ -1,38 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:practise/Screens/Adding/AddTrip.dart';
+import 'package:practise/Screens/Trips/TripDetailsPage.dart';
+import 'package:practise/Screens/Trips/ride_storage.dart';
+import 'package:practise/constants.dart';
+
 import '../../Models/ride_model.dart';
 import 'widgets/ride_card.dart';
 
-class AvailableTripsPage extends StatelessWidget {
-  AvailableTripsPage({super.key});
+class AvailableTripsPage extends StatefulWidget {
+  const AvailableTripsPage({super.key});
 
-  final List<Ride> rides = List.generate(
-    20,
-    (index) => Ride(
-      driverName: ['أحمد', 'مروان', 'لانا', 'جود', 'هبة'][index % 5],
-      destination: ['دمشق', 'حلب', 'حمص', 'اللاذقية', 'طرطوس'][index % 5],
-      time: '${4 + (index % 8)}:${(index * 7) % 60} م',
-      price: 5000 + (index * 700) % 8000, // بالليرة السورية
-      rating: (4.5 + (index % 5) * 0.1).clamp(0, 5).toDouble(),
-    ),
-  );
+  @override
+  State<AvailableTripsPage> createState() => _AvailableTripsPageState();
+}
+
+class _AvailableTripsPageState extends State<AvailableTripsPage> {
+  List<Ride> rides = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadRides();
+  }
+
+  Future<void> loadRides() async {
+    await RideStorage.clearExpiredRides(); // حذف المنتهية
+    final data = await RideStorage.getRides();
+    setState(() => rides = data);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('الرحلات المتوفرة'),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddTripPage()),
+          );
+          loadRides();
+        },
+        backgroundColor: primaryColor,
+        child: const Icon(Icons.add, size: 30, color: TextColor),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: rides.length,
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: RideCard(ride: rides[index]),
-          ),
-        ),
-      ),
+      appBar: AppBar(title: const Text('الرحلات المتوفرة')),
+      body: rides.isEmpty
+          ? const Center(child: Text("لا توجد رحلات حالياً"))
+          : Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: ListView.builder(
+                itemCount: rides.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            TripDetailsPage(ride: rides[index]),
+                      ),
+                    );
+                  },
+                  child: RideCard(ride: rides[index]),
+                ),
+              ),
+            ),
     );
   }
 }
