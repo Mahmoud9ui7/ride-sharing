@@ -13,7 +13,6 @@ We designed the app to provide a safe, comfortable, and reliable travel experien
 - Fast in-app customer support  
 
 ## 📸 Screenshots
-## 📸 Screenshots
 
 <table>
   <tr>
