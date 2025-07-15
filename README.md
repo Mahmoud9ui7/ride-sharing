@@ -14,11 +14,17 @@ We designed the app to provide a safe, comfortable, and reliable travel experien
 
 ## 📸 Screenshots
 
-Below are sample screenshots of the app interface:
-
-![Screenshot 1](1.jpg)  
-![Screenshot 2](2.jpg)  
-![Screenshot 3](3.jpg)  
-![Screenshot 4](4.jpg)  
-![Screenshot 5](5.jpg)  
-![Screenshot 6](6.jpg)
+<table>
+  <tr>
+    <td><img src="1.jpg" width="200"/></td>
+    <td><img src="2.jpg" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="3.jpg" width="200"/></td>
+    <td><img src="4.jpg" width="200"/></td>
+  </tr>
+  <tr>
+    <td><img src="5.jpg" width="200"/></td>
+    <td><img src="6.jpg" width="200"/></td>
+  </tr>
+</table>
