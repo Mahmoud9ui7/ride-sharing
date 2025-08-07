@@ -6,7 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:practise/Screens/Auth/LoginScreen.dart';
 import 'package:practise/Screens/Profile/Components/HelpCenterPage.dart';
 import 'package:practise/Screens/Profile/Components/Profile.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
+import 'package:practise/Screens/componets/navigateWithFade.dart';
+import 'package:practise/person/people.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,7 +20,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   String userName = 'غير مسجل';
   String userEmail = 'غير مسجل';
-  String userPhone = '+123 456 7890';
+  String userPhone = 'لا يوجد';
 
   File? _image;
   final ImagePicker _picker = ImagePicker();
@@ -27,6 +29,8 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
+  User? currentUser;
+
   @override
   void initState() {
     super.initState();
@@ -34,11 +38,11 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _loadUserData() {
-    User? user = FirebaseAuth.instance.currentUser;
+    currentUser = FirebaseAuth.instance.currentUser;
 
-    if (user != null) {
-      String? displayName = user.displayName;
-      String? email = user.email;
+    if (currentUser != null) {
+      String? displayName = currentUser!.displayName;
+      String? email = currentUser!.email;
 
       setState(() {
         userName = displayName ?? 'بدون اسم';
@@ -63,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      // بعد اختيار الصورة، نعرض رسالة تأكيد
       bool confirm = await showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -97,6 +100,13 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _editProfileDialog() {
+    if (currentUser == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("يجب تسجيل الدخول لتعديل الملف الشخصي")),
+      );
+      return;
+    }
+
     nameController.text = userName;
     emailController.text = userEmail;
     phoneController.text = userPhone;
@@ -194,6 +204,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: IconButton(
                   icon: const Icon(Icons.camera_alt, color: Colors.white),
                   onPressed: () {
+                    if (currentUser == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("يجب تسجيل الدخول لتغيير الصورة")),
+                      );
+                      return;
+                    }
+
                     showModalBottomSheet(
                       context: context,
                       builder: (ctx) => Column(
@@ -277,27 +295,25 @@ class _ProfilePageState extends State<ProfilePage> {
             buildTile(Icons.dark_mode, 'الوضع الليلي', () {}),
             buildTile(Icons.lock, 'تغيير كلمة المرور', () {}),
             buildTile(Icons.language, 'اللغة', () {}),
+            buildTile(Icons.people, 'الأشخاص', () {
+              AnimationPush(context, peopleScreen());
+            }),
             const SizedBox(height: 30),
             buildSectionTitle('الدعم'),
             buildTile(Icons.help_outline, 'مركز المساعدة', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HelpCenterPage()),
-              );
+              AnimationPush(context, HelpCenterPage());
             }),
             buildTile(Icons.policy, 'سياسة الخصوصية', () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LicensePage()),
-              );
+              AnimationPush(context, LicensePage());
             }),
-            buildTile(Icons.logout, 'تسجيل الخروج', () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-            }),
+            FirebaseAuth.instance.currentUser != null
+                ? buildTile(Icons.logout, 'تسجيل الخروج', () async {
+                    await FirebaseAuth.instance.signOut();
+                    AmimationPushReplacement(context, LoginScreen());
+                  })
+                : buildTile(Icons.login, 'تسجيل الدخول', () {
+                    AmimationPushReplacement(context, LoginScreen());
+                  }),
           ],
         ),
       ),

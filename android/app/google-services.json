@@ -1,18 +1,31 @@
 {
   "project_info": {
-    "project_number": "32642503389",
-    "project_id": "ride-sha",
-    "storage_bucket": "ride-sha.firebasestorage.app"
+    "project_number": "493508694605",
+    "project_id": "ride-sharing-16eb6",
+    "storage_bucket": "ride-sharing-16eb6.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:32642503389:android:12be7e83ae0e3784468134",
+        "mobilesdk_app_id": "1:493508694605:android:d24f75b0517a3837548204",
         "android_client_info": {
           "package_name": "com.example.ride_sharing"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "493508694605-i4qnmh79upv0e6s1da36khk4coef5vk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ride_sharing",
+            "certificate_hash": "b006da869adb98d21882f0db84496bec258dd942"
+          }
+        },
+        {
+          "client_id": "493508694605-e0hsjm05ef69uo2dkr42toe2n8e45fpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC18gOOlzY5eutgAuALeJeg7XMle8wTBqo"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493508694605-e0hsjm05ef69uo2dkr42toe2n8e45fpq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

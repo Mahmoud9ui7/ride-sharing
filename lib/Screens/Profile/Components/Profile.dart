@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
 
 Widget buildSectionTitle(String title) {
   return Padding(
@@ -96,12 +96,4 @@ void editPhoneNumber(BuildContext context, String currentNumber) {
       );
     },
   );
-  void editPhoneNumber(BuildContext context, String currentPhone) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('تعديل رقم الهاتف غير متاح حاليًا'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-  }
 }

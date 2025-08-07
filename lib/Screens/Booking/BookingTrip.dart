@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:practise/constants.dart';
-import 'package:practise/widgets.dart';
+import 'package:practise/Screens/componets/constants.dart';
+import 'package:practise/Screens/componets/widgets.dart';
 
 class BookingPage extends StatefulWidget {
   BookingPage({
@@ -22,29 +21,13 @@ class _BookingPageState extends State<BookingPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final List<String> _syrianCities = [
-    'دمشق',
-    'حلب',
-    'حمص',
-    'حماة',
-    'اللاذقية',
-    'طرطوس',
-    'السويداء',
-    'دير الزور',
-    'الرقة',
-    'الحسكة'
-  ];
-
   String? _fromCity;
   String? _toCity;
   DateTime? _selectedDateTime;
 
-  final DateFormat _dateTimeFormat = DateFormat('yyyy-MM-dd – HH:mm');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF1F4F8),
       appBar: AppBar(
         title: Text(
           "حجز رحلة",
@@ -67,6 +50,7 @@ class _BookingPageState extends State<BookingPage> {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.grey.withOpacity(0.4),
                         blurRadius: 10,
                         offset: Offset(0, 4),

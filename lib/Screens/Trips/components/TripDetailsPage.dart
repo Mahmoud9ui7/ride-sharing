@@ -1,8 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:practise/Models/ride_model.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
 
 class TripDetailsPage extends StatefulWidget {
   final Ride ride;
@@ -51,11 +52,10 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('yyyy-MM-dd – kk:mm')
-        .format(widget.ride.departureDateTime);
+    final formattedDate =
+        DateFormat('yyyy-MM-dd – kk:mm').format(widget.ride.departureDateTime);
 
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
       appBar: AppBar(
         title: Text('تفاصيل الرحلة'),
       ),
@@ -65,8 +65,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
         padding: const EdgeInsets.all(20),
         child: Center(
           child: Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             elevation: 10,
             shadowColor: primaryColor,
             child: Padding(
@@ -84,8 +84,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                   _buildInfoRow(Icons.location_on, "من", widget.ride.fromCity),
                   _buildInfoRow(Icons.flag, "الوجهة", widget.ride.destination),
                   _buildInfoRow(Icons.access_time, "الوقت", widget.ride.time),
-                  _buildInfoRow(Icons.attach_money, "السعر",
-                      "${widget.ride.price} ل.س"),
+                  _buildInfoRow(
+                      Icons.attach_money, "السعر", "${widget.ride.price} ل.س"),
                   _buildInfoRow(
                       Icons.star, "التقييم", widget.ride.rating.toString()),
                   _buildInfoRow(
@@ -167,8 +167,8 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
     units.add({"value": seconds, "label": "ثواني"});
 
     return units
-        .map((unit) =>
-            _buildTimeBox(unit["value"].toString().padLeft(2, '0'), unit["label"]))
+        .map((unit) => _buildTimeBox(
+            unit["value"].toString().padLeft(2, '0'), unit["label"]))
         .toList();
   }
 

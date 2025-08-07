@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practise/Screens/home/homepage.dart';
 
 class EmailVerificationScreen extends StatelessWidget {
   const EmailVerificationScreen({Key? key}) : super(key: key);
@@ -6,6 +7,28 @@ class EmailVerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('تحقق من البريد'),
+        actions: [
+          Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      (contex) => false);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: Icon(
+                    Icons.cancel,
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
       backgroundColor: const Color(0xFFF5F7FA),
       body: SafeArea(
         child: Center(
@@ -14,7 +37,8 @@ class EmailVerificationScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.email_outlined, size: 100, color: Colors.blueAccent),
+                const Icon(Icons.email_outlined,
+                    size: 100, color: Colors.blueAccent),
                 const SizedBox(height: 20),
                 const Text(
                   'تحقق من بريدك الإلكتروني',
@@ -27,29 +51,12 @@ class EmailVerificationScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 32),
-                ElevatedButton.icon(
-                  icon: const Icon(Icons.open_in_new),
-                  label: const Text('افتح البريد الإلكتروني'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                    backgroundColor: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 5,
-                  ),
-                  onPressed: () {
-                    // TODO: أضف فتح تطبيق البريد هنا
-                  },
-                ),
-                const SizedBox(height: 20),
                 TextButton(
-                  onPressed: () {
-                    // TODO: إعادة إرسال الرابط
-                  },
+                  onPressed: () {},
                   child: const Text(
                     'لم يصلك البريد؟ أعد الإرسال',
-                    style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.blueAccent, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],

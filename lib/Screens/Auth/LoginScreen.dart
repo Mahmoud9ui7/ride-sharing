@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:practise/Screens/Auth/ForgotPasswordScreen.dart';
+import 'package:practise/Screens/Auth/RegisterScreen.dart';
+import 'package:practise/Screens/Auth/components/ForgotPasswordScreen.dart';
 import 'package:practise/Screens/Auth/components/LoginComponent.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
+import 'package:practise/Screens/componets/navigateWithFade.dart';
+import 'package:practise/Screens/home/homepage.dart';
 import 'package:rive/rive.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -95,11 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 12),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPasswordScreen()));
+                            AnimationPush(context, ForgotPasswordScreen());
                           },
                           child: const Text(
                             'نسيت كلمة المرور ؟',
@@ -107,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/register');
+                            AnimationPush(context, RegisterScreen());
                           },
                           child: const Text(
                             'ليس لديك حساب ؟ إنشاء حساب جديد',
@@ -115,8 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/home', (context) => false);
+                            AmimationpushAndRemoveUntil(context, HomeScreen());
                           },
                           child: const Text(
                             'الاستمرار بدون حساب',

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // ✅ تأكد من إضافة هذا
+import 'package:intl/intl.dart';
 import 'package:practise/Models/ride_model.dart';
-import 'package:practise/Screens/Trips/ride_storage.dart';
-import 'package:practise/constants.dart';
-import '../../widgets.dart'; 
+import 'package:practise/Screens/Trips/components/ride_storage.dart';
+import 'package:practise/Screens/componets/constants.dart';
+
+import '../componets/widgets.dart';
 
 class AddTripPage extends StatefulWidget {
   const AddTripPage({super.key});
@@ -32,7 +33,6 @@ class _AddTripPageState extends State<AddTripPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF1F4F8),
       appBar: AppBar(
         title: Text(
           "إضافة رحلة",
@@ -116,7 +116,8 @@ class _AddTripPageState extends State<AddTripPage> {
                           driverName: "أنت",
                           fromCity: _fromCity!,
                           destination: _toCity!,
-                          time: DateFormat('hh:mm a').format(_selectedDateTime!), 
+                          time:
+                              DateFormat('hh:mm a').format(_selectedDateTime!),
                           price: double.tryParse(_priceController.text) ?? 0,
                           rating: 5.0,
                           departureDateTime: _selectedDateTime!,

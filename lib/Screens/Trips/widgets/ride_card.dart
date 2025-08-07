@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practise/Models/ride_model.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
 
 class RideCard extends StatelessWidget {
   final Ride ride;

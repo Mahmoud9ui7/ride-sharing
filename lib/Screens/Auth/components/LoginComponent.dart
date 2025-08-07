@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:practise/Screens/componets/constants.dart';
 
 class LoginButton extends StatelessWidget {
   final GlobalKey<FormState> _formKey;
@@ -14,7 +15,8 @@ class LoginButton extends StatelessWidget {
     required this.passwordController,
   }) : _formKey = formKey;
 
-  void _showMessage(BuildContext context, String message, {bool isError = true}) {
+  void _showMessage(BuildContext context, String message,
+      {bool isError = true}) {
     Flushbar(
       message: message,
       duration: const Duration(seconds: 4),
@@ -48,7 +50,7 @@ class LoginButton extends StatelessWidget {
 
         _showMessage(context, 'تم تسجيل الدخول بنجاح 🎉', isError: false);
 
-        await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 1));
         Navigator.pushNamedAndRemoveUntil(context, '/home', (context) => false);
       } on FirebaseAuthException catch (e) {
         Navigator.pop(context);
@@ -88,13 +90,14 @@ class LoginButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => _login(context),
       style: ElevatedButton.styleFrom(
+        backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
       ),
       child: const Text(
         'دخول',
-        style: TextStyle(fontSize: 16),
+        style: TextStyle(fontSize: 16, color: TextColor),
       ),
     );
   }

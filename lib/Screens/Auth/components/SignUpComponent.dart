@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:another_flushbar/flushbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:practise/Screens/componets/constants.dart';
 
 class SignUpButton extends StatelessWidget {
   final GlobalKey<FormState> _formKey;
@@ -14,7 +15,8 @@ class SignUpButton extends StatelessWidget {
     required this.passwordController,
   }) : _formKey = formKey;
 
-  void _showMessage(BuildContext context, String message, {bool isError = true}) {
+  void _showMessage(BuildContext context, String message,
+      {bool isError = true}) {
     Flushbar(
       message: message,
       duration: const Duration(seconds: 4),
@@ -77,13 +79,14 @@ class SignUpButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => _signUp(context),
       style: ElevatedButton.styleFrom(
+        backgroundColor: primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
       ),
       child: const Text(
         'تسجيل',
-        style: TextStyle(fontSize: 16),
+        style: TextStyle(fontSize: 16, color: TextColor),
       ),
     );
   }

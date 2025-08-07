@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:practise/Screens/Auth/LoginScreen.dart';
 import 'package:practise/Screens/Auth/components/SignUpComponent.dart';
-import 'package:practise/constants.dart';
+import 'package:practise/Screens/componets/constants.dart';
+import 'package:practise/Screens/componets/navigateWithFade.dart';
+import 'package:practise/Screens/home/homepage.dart';
 import 'package:rive/rive.dart'; // أضف هذا في pubspec.yaml
 
 class RegisterScreen extends StatefulWidget {
@@ -105,14 +108,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(height: 12),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          AmimationPop(context, LoginScreen());
                         },
                         child: Text(' لديك حساب مسبقا ؟ تسجيل الدخول'),
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, '/home', (context) => false);
+                          AmimationpushAndRemoveUntil(context, HomeScreen());
                         },
                         child: Text(' الاستمرار بدون حساب'),
                       ),

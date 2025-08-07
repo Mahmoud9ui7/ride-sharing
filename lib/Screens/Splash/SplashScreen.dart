@@ -2,15 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' as flutter;
 import 'package:flutter/material.dart';
 import 'package:practise/Screens/Auth/LoginScreen.dart';
-import 'package:practise/main.dart';
+import 'package:practise/Screens/home/homepage.dart';
 import 'package:rive/rive.dart';
 
-class SplashScreen0 extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreen0State createState() => _SplashScreen0State();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreen0State extends State<SplashScreen0>
+final user = FirebaseAuth.instance.currentUser;
+
+class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _titleController;
   late AnimationController _subtitleController;
@@ -55,9 +57,7 @@ class _SplashScreen0State extends State<SplashScreen0>
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 700),
             pageBuilder: (_, __, ___) =>
-                FirebaseAuth.instance.currentUser == null
-                    ? LoginScreen()
-                    : HomeScreen(),
+                user == null ? LoginScreen() : HomeScreen(),
             transitionsBuilder: (_, animation, __, child) {
               return FadeTransition(
                 opacity: animation,
