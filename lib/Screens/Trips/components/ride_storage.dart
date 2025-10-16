@@ -8,7 +8,6 @@ class RideStorage {
 
   /// ✅ إضافة رحلة جديدة وتحديث التخزين
   static Future<void> saveRide(Ride ride) async {
-    final prefs = await SharedPreferences.getInstance();
     final rides = await getRides();
     rides.add(ride);
     await saveRides(rides); // 🟢 استخدم الدالة الموحّدة

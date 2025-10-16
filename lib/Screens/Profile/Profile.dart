@@ -6,9 +6,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:practise/Screens/Auth/LoginScreen.dart';
 import 'package:practise/Screens/Profile/Components/HelpCenterPage.dart';
 import 'package:practise/Screens/Profile/Components/Profile.dart';
+import 'package:practise/Screens/Profile/Components/theme_settings_page.dart';
 import 'package:practise/Screens/componets/constants.dart';
 import 'package:practise/Screens/componets/navigateWithFade.dart';
-import 'package:practise/person/people.dart';
+import 'package:practise/people/persons_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -292,11 +293,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 Icons.credit_card, 'طريقة الدفع', 'Visa **** 1234', () {}),
             const SizedBox(height: 30),
             buildSectionTitle('الإعدادات'),
-            buildTile(Icons.dark_mode, 'الوضع الليلي', () {}),
+            buildTile(Icons.dark_mode, 'الوضع الليلي', () {
+              AnimationPush(context, ThemeSettingsPage());
+            }),
             buildTile(Icons.lock, 'تغيير كلمة المرور', () {}),
             buildTile(Icons.language, 'اللغة', () {}),
-            buildTile(Icons.people, 'الأشخاص', () {
-              AnimationPush(context, peopleScreen());
+            buildTile(Icons.people, 'people', () {
+              AnimationPush(context, PersonsPage());
             }),
             const SizedBox(height: 30),
             buildSectionTitle('الدعم'),
